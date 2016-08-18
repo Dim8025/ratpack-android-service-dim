@@ -13,6 +13,10 @@ ratpack {
       render groovyMarkupTemplate("index.gtpl", title: "My Ratpack App")
     }
 
+    get("hello") {
+      response.send "Hello from Heroku!"
+    }
+
     files { dir "public" }
   }
 }
