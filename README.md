@@ -9,7 +9,8 @@ Or follow these steps, after installing the [Heroku Toolbelt](https://toolbelt.h
 ```sh-session
 $ git clone https://github.com/kissaten/ratpack-android-service
 $ cd ratpack-android-service
-$ heroku create
+$ git checkout -t origin/db
+$ heroku create --addons heroku-postgresql
 $ git push heroku master
 $ heroku open
 ```
