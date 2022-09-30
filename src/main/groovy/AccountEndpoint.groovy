@@ -16,6 +16,8 @@ class AccountEndpoint extends GroovyChainAction {
 
     @Override
     void execute() throws Exception {
+        logger.info "> execute AccountEndpoint GroovyChainAction"
+
         post("new") {
             parse(jsonNode())
             .observe()
@@ -55,7 +57,7 @@ class AccountEndpoint extends GroovyChainAction {
             byMethod {
                 get {
                     logger.info "AccountService - all - get"
-                    
+
                     accountService
                     .all()
                     .toList()

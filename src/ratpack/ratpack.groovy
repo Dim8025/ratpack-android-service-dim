@@ -54,8 +54,7 @@ ratpack {
 		prefix("accounts") {
 			all {
                 logger.info "> Get All Accounts"
-              
-				render "{id: 1, name: name}"
+                chain(registry.get(AccountEndpoint))
             }
 		}
 
