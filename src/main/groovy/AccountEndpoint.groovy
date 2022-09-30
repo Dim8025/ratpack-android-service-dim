@@ -20,9 +20,8 @@ class AccountEndpoint extends GroovyChainAction {
     @Override
     void execute() throws Exception {
         logger.info ("> execute AccountEndpoint GroovyChainAction")
-
         
-        all {
+        get {
             logger.info ("> all get")
 
             accountService
