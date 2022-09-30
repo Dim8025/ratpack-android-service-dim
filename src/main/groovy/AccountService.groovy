@@ -11,7 +11,7 @@ class AccountService {
 
     @Inject
     BookService(AccountDbCommands accountDbCommands) {
-        this.bookDbCommands = accountDbCommands
+        this.accountDbCommands = accountDbCommands
     }
 
     void createTable() {

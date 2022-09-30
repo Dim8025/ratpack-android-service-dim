@@ -50,7 +50,10 @@ ratpack {
 		}
 
 		prefix("accounts") {
-			all chain(registry.get(AccountEndpoint))
+			all {
+                RequestLogger.ncsa(logger)
+                chain(registry.get(AccountEndpoint))
+            }
 		}
 
 		files { dir "public" }
