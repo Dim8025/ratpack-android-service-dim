@@ -7,7 +7,7 @@ import javax.inject.Inject
 @Slf4j
 class AccountService {
 
-    private final AccountDbCommands accountDbCommands
+    private AccountDbCommands accountDbCommands
 
     @Inject
     BookService(AccountDbCommands accountDbCommands) {
