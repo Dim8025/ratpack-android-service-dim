@@ -31,7 +31,7 @@ class AccountDbCommands {
             @Override
             protected rx.Observable<GroovyRowResult> construct() {
                 observeEach(Blocking.get {
-                    sql.rows("select id, name from account order by name")
+                    sql.rows("select id, name from salesforcestage.account order by name")
                 })
             }
 
