@@ -19,7 +19,7 @@ class AccountService {
         accountDbCommands.createTables()
     }
 
-    Observable<Book> all() {
+    Observable<Account> all() {
         accountDbCommands.getAll().map { row ->
             new Account(
                     row.id,
@@ -33,7 +33,7 @@ class AccountService {
         .map { id }
     }
 
-    Observable<Book> find(String isbn) {
+    Observable<Account> find(String isbn) {
         accountDbCommands.find(name)
         .map { GroovyRowResult dbRow ->
             return new Account(
