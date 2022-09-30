@@ -21,6 +21,18 @@ class AccountEndpoint extends GroovyChainAction {
     void execute() throws Exception {
         logger.info ("> execute AccountEndpoint GroovyChainAction")
 
+        
+        all {
+            logger.info ("> all get")
+
+            accountService
+            .all()
+            .toList()
+            .subscribe { List<Account> accounts ->
+                render json(accounts)
+            }
+        }
+
         post("new") {
             parse(jsonNode())
             .observe()
@@ -53,18 +65,6 @@ class AccountEndpoint extends GroovyChainAction {
                         }
                     }
                 }
-            }
-        }
-
-
-        get {
-            logger.info ("> all get")
-
-            accountService
-            .all()
-            .toList()
-            .subscribe { List<Account> accounts ->
-                render json(accounts)
             }
         }
     }
