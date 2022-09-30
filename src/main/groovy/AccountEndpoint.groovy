@@ -4,9 +4,11 @@ import javax.inject.Inject
 
 import static ratpack.jackson.Jackson.json
 import static ratpack.jackson.Jackson.jsonNode
+import ratpack.handling.RequestLogger
 
 class AccountEndpoint extends GroovyChainAction {
 
+    final Logger logger = LoggerFactory.getLogger(ratpack.class);
     private final AccountService accountService
 
     @Inject
@@ -16,6 +18,7 @@ class AccountEndpoint extends GroovyChainAction {
 
     @Override
     void execute() throws Exception {
+        RequestLogger.ncsa(logger)
         logger.info "> execute AccountEndpoint GroovyChainAction"
 
         post("new") {

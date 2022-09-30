@@ -38,8 +38,9 @@ ratpack {
 
 	handlers {
 		all {
+			RequestLogger.ncsa(logger)
 			logger.info "== Request Received =="
-            RequestLogger.ncsa(logger)
+            
 			next()
         }
 
