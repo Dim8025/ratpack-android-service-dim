@@ -16,41 +16,43 @@ import static ratpack.groovy.Groovy.ratpack
 final Logger logger = LoggerFactory.getLogger(ratpack.class);
 
 ratpack {
-  bindings {
-    module MarkupTemplateModule
-    module HikariModule, { HikariConfig c ->
-      c.addDataSourceProperty("url", System.getenv("JDBC_DATABASE_URL"))
-      c.setDataSourceClassName("org.postgresql.ds.PGPoolingDataSource")
-    }
-    module SqlModule
-    module BookModule
-    module new HystrixModule().sse()
+	bindings {
+		module MarkupTemplateModule
+		module HikariModule, { HikariConfig c ->
+			c.addDataSourceProperty("url", System.getenv("JDBC_DATABASE_URL"))
+			c.setDataSourceClassName("org.postgresql.ds.PGPoolingDataSource")
+		}
+		module SqlModule
+		module BookModule
+		module AccountModule
+		module new HystrixModule().sse()
 
-    bindInstance Service, new Service() {
-      @Override
-      void onStart(StartEvent event) throws Exception {
-        logger.info "Initializing RX"
-        RxRatpack.initialize()
-        event.registry.get(BookService).createTable()
-      }
-    }
-  }
+		bindInstance Service, new Service() {
+			@Override
+			void onStart(StartEvent event) throws Exception {
+				logger.info "Initializing RX"
+				RxRatpack.initialize()
+			}
+		}
+	}
 
-  handlers { BookService bookService ->
-    all RequestLogger.ncsa(logger)
+	handlers {
+		all {
+            RequestLogger.ncsa(logger)
+        }
 
-    get {
-      render groovyMarkupTemplate("index.gtpl", title: "My Ratpack App")
-    }
+		get {
+			render groovyMarkupTemplate("index.gtpl", title: "My Ratpack App")
+		}
 
-    get("hello") {
-      response.send "Hello from Heroku!"
-    }
+		get("hello") {
+			response.send "Hello from Heroku!"
+		}
 
-    prefix("books") {
-      all chain(registry.get(BookEndpoint))
-    }
+		prefix("accounts") {
+			all chain(registry.get(AccountEndpoint))
+		}
 
-    files { dir "public" }
-  }
+		files { dir "public" }
+	}
 }
