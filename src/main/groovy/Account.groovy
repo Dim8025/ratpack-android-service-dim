@@ -2,6 +2,6 @@ import groovy.transform.Immutable
 
 @Immutable
 class Account {
-    String id
+    Integer id
     String name
 }
