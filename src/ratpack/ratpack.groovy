@@ -51,7 +51,7 @@ ratpack {
 
 		prefix("accounts") {
 			all {
-                RequestLogger.ncsa(logger)
+                logger.info "Get All Accounts"
                 chain(registry.get(AccountEndpoint))
             }
 		}
