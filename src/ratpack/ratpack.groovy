@@ -38,6 +38,7 @@ ratpack {
 
 	handlers {
 		all {
+			logger.info "handlers > all"
             RequestLogger.ncsa(logger)
         }
 
