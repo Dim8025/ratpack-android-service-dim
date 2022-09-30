@@ -39,7 +39,7 @@ class AccountEndpoint extends GroovyChainAction {
         logger.info ("> execute AccountEndpoint GroovyChainAction 2")
 
         post("new") {
-            logger.info ("> post new"
+            logger.info ("> post new")
 
             parse(jsonNode())
             .observe()
@@ -59,7 +59,7 @@ class AccountEndpoint extends GroovyChainAction {
         logger.info ("> execute AccountEndpoint GroovyChainAction 3")
 
         path(":name") {
-            logger.info ("> path name"
+            logger.info ("> path name")
 
             def name = pathTokens["name"]
 
