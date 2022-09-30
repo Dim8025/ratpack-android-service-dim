@@ -53,10 +53,7 @@ ratpack {
 		}
 
 		prefix("accounts") {
-			all {
-                logger.info "> Get All Accounts"
-                chain(registry.get(AccountEndpoint))
-            }
+			all chain(registry.get(AccountEndpoint))
 		}
 
 		files { dir "public" }
