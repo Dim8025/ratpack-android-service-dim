@@ -38,7 +38,7 @@ ratpack {
 
 	handlers {
 		all {
-			logger.info "handlers > all"
+			logger.info "== Request Received =="
             RequestLogger.ncsa(logger)
 			next()
         }
@@ -53,7 +53,7 @@ ratpack {
 
 		prefix("accounts") {
 			all {
-                logger.info "Get All Accounts"
+                logger.info "> Get All Accounts"
                 chain(registry.get(AccountEndpoint))
             }
 		}
