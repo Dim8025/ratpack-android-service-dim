@@ -56,18 +56,15 @@ class AccountEndpoint extends GroovyChainAction {
             }
         }
 
-        all {
-            byMethod {
-                get {
-                    logger.info ("> all get")
 
-                    accountService
-                    .all()
-                    .toList()
-                    .subscribe { List<Account> accounts ->
-                        render json(accounts)
-                    }
-                }
+        get {
+            logger.info ("> all get")
+
+            accountService
+            .all()
+            .toList()
+            .subscribe { List<Account> accounts ->
+                render json(accounts)
             }
         }
     }
