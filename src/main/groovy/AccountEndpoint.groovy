@@ -59,7 +59,7 @@ class AccountEndpoint extends GroovyChainAction {
         all {
             byMethod {
                 get {
-                    logger.info "AccountService - all - get"
+                    logger.info ("> all get")
 
                     accountService
                     .all()
