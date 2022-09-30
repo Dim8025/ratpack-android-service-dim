@@ -19,20 +19,28 @@ class AccountEndpoint extends GroovyChainAction {
 
     @Override
     void execute() throws Exception {
-        logger.info ("> execute AccountEndpoint GroovyChainAction")
+        logger.info ("> execute AccountEndpoint GroovyChainAction 1")
         
-        get {
-            logger.info ("> all get")
+        all {
+            byMethod {
+                get {
+                    logger.info ("> all get")
 
-            accountService
-            .all()
-            .toList()
-            .subscribe { List<Account> accounts ->
-                render json(accounts)
+                    accountService
+                    .all()
+                    .toList()
+                    .subscribe { List<Account> accounts ->
+                        render json(accounts)
+                    }
+                }
             }
         }
 
+        logger.info ("> execute AccountEndpoint GroovyChainAction 2")
+
         post("new") {
+            logger.info ("> post new"
+
             parse(jsonNode())
             .observe()
             .flatMap { input ->
@@ -48,7 +56,11 @@ class AccountEndpoint extends GroovyChainAction {
             }
         }
 
+        logger.info ("> execute AccountEndpoint GroovyChainAction 3")
+
         path(":name") {
+            logger.info ("> path name"
+
             def name = pathTokens["name"]
 
             byMethod {
